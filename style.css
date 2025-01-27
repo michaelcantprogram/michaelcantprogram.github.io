@@ -1,21 +1,27 @@
 /* General Styles */
 body {
     font-family: 'Roboto Mono', monospace;
-    background-color: #1a1a1a;
-    color: #e6e6e6;
+    background-color: #ffffff; /* White background */
+    color: #333333; /* Dark text for contrast */
     margin: 0;
     padding: 0;
     line-height: 1.6;
 }
 
+/* Navigation Bar */
 header {
+    background-color: #ffffff; /* White background */
     padding: 20px;
-    text-align: center;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    text-align: center;
 }
 
 nav ul li {
@@ -24,26 +30,28 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #e6e6e6;
+    color: #333333; /* Dark text */
     text-decoration: none;
+    font-weight: bold;
 }
 
 nav ul li a:hover {
     text-decoration: underline;
 }
 
+/* Sections */
 section {
-    padding: 60px 20px;
+    padding: 80px 20px;
     max-width: 800px;
     margin: 0 auto;
 }
 
 h1, h2, h3 {
-    color: #ffffff;
+    color: #000000; /* Black headings */
 }
 
 a {
-    color: #4dabf7;
+    color: #4dabf7; /* Blue links */
     text-decoration: none;
 }
 
