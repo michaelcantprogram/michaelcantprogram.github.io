@@ -62,3 +62,21 @@ a:hover {
 /*.project {*/
 /*    margin-bottom: 40px;*/
 /*}*/
+
+.entry-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    h3 {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px;
+    }
+
+    h3 span {
+        font-size: 14px;
+    }
+}
