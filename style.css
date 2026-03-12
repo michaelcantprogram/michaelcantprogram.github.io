@@ -5,7 +5,7 @@ body {
     color: #333333; /* Dark text for contrast */
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    /*line-height: 1.6;*/
 }
 
 /* Navigation Bar */
@@ -26,13 +26,13 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin: 0 15px;
+    /*margin: 0 15px;*/
 }
 
 nav ul li a {
     color: #333333; /* Dark text */
     text-decoration: none;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 nav ul li a:hover {
@@ -51,7 +51,7 @@ h1, h2, h3 {
 }
 
 a {
-    color: #4dabf7; /* Blue links */
+    /*color: #4dabf7; !* Blue links *!*/
     text-decoration: none;
 }
 
@@ -71,7 +71,6 @@ a:hover {
 
 /* Mobile fix for project/research title layout */
 @media (max-width: 768px) {
-
     h3[style*="display: flex"] {
         display: block !important;
     }
@@ -80,5 +79,4 @@ a:hover {
         display: block;
         margin-top: 4px;
     }
-
 }
