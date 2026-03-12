@@ -69,22 +69,22 @@ a:hover {
     align-items: center;
 }
 
+.entry-date {
+    font-size: 16px;
+    font-weight: normal;
+    color: #555;
+}
+
 /* Mobile fix for project/research title layout */
 @media (max-width: 768px) {
 
-    h3[style*="display: flex"] {
-        display: block !important;
+    .entry-title {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    h3[style*="display: flex"] a {
-        display: block;
-    }
-
-    h3[style*="display: flex"] span {
-        display: block !important;
+    .entry-date {
         margin-top: 4px;
-        font-size: 16px !important;
-        font-weight: normal;
     }
 
 }
