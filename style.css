@@ -71,12 +71,18 @@ a:hover {
 
 /* Mobile fix for project/research title layout */
 @media (max-width: 768px) {
-    h3[style*="display: flex"] {
-        display: block !important;
+    h2[style*="display: flex"] {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: flex-start !important;
+        gap: 12px;
     }
 
-    h3[style*="display: flex"] span {
+    h2[style*="display: flex"] span {
         display: block;
-        margin-top: 4px;
+        flex: 0 0 110px;
+        width: 110px;
+        text-align: right;
+        line-height: 1.1;
     }
 }
