@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Projects - Changdao He</title>
+    <title>Papers - Changdao He</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -51,7 +51,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="research.html">Research</a></li>
+                <li><a href="research.html">Papers</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="courses.html">Courses</a></li>
                 <li class="cv-button"><a href="assets/Changdao_He_CV.pdf" target="_blank">CV</a></li>
@@ -63,23 +63,38 @@
 <!-- Page Content -->
 <div class="container-fluid">
     <div class="content">
-        <h1>Research</h1>
+        <h1>Papers</h1>
+        <div>
+            <h2 style="display: flex; justify-content: space-between; align-items: center;"><a href="https://arxiv.org/abs/2608.23300" target="_blank" style="color: #333333">Evaluating SAT Solver Metrics as Predictors of Human-Perceived Nonogram Difficulty</a></h2>
+            <p><strong>Topics:</strong> Human-Perceived Difficulty, SAT Solvers</p>
+            <p>This collaborative research investigates whether SAT solver metrics can predict human-perceived difficulty in Nonogram puzzles. Through a user study, the work compares solver statistics—including decisions, propagations,
+                and conflicts—with participants’ reported difficulty and solving behaviour. The results find little evidence that these metrics align with either perceived difficulty or behavioural signals, while showing that participant
+                expertise moderates the relationship between solver metrics and difficulty ratings. Analysis of solving trajectories and survey responses further reveals recurring human strategies, particularly complex constraint propagation,
+                that are not captured by the solver metrics, highlighting a fundamental difference between human and computational measures of puzzle difficulty.
+            </p>
+
+            <p><strong>C. He</strong>, Y. Ju., <a href="https://www.cs.toronto.edu/~axgao/" target="_blank" style="color: #333333">A. Gao</a>, <a href="https://www.cs.toronto.edu/~calver/" target="_blank" style="color: #333333">J. Calver</a>. </p>
+            <p><em>Submitted to AAAI 27; arXiv preprint (2026).</em> <a href="https://arxiv.org/abs/2608.23300" target="_blank">arXiv: 2608.23300</a>.</p>
+
+        </div>
+
         <div>
             <h2 style="display: flex; justify-content: space-between; align-items: center;"><a href="https://arxiv.org/abs/2607.16163" target="_blank" style="color: #333333">Revisiting Real-Time Interval and Throughput Maximization</a></h2>
-            <p><strong>Related fields:</strong> Online Algorithms, Competitive Analysis</p>
+            <p><strong>Topics:</strong> Online Algorithms, Competitive Analysis</p>
             <p>This collaborative research revisits real-time interval scheduling and throughput maximization, extending classical interval scheduling results to the more general throughput setting.
                 The work develops new deterministic competitive algorithms for unweighted, proportionally weighted, and C-Benevolent throughput maximization under preemption–restart, introduces an advance-notice model that enables constant competitive guarantees without preemption,
                 and establishes new bounds for the preemption–revoke model. In particular, it proves that no deterministic online algorithm can achieve a constant competitive ratio when processing times are unrestricted,
                 while providing nearly tight lower and upper bounds for instances with a bounded number of distinct processing times.
             </p>
 
-            <p><em>A. Borodin, <strong>C. He</strong>, N. Mottu.</em> <em>arXiv preprint (2026).</em> <a href="https://arxiv.org/abs/2607.16163" target="_blank">arXiv:2607.16163</a>. Submitted to <a href="https://algo-conference.org/2026/waoa/" target="_blank">WAOA26.</a></p>
+            <p><a href="https://www.cs.toronto.edu/~bor/" target="_blank" style="color: #333333">A. Borodin</a>, <strong>C. He</strong>, N. Mottu. </p>
+            <p><em>arXiv preprint (2026).</em> <a href="https://arxiv.org/abs/2607.16163" target="_blank">arXiv: 2607.16163</a>. </p>
 
         </div>
 
         <div>
             <h2 style="display: flex; justify-content: space-between; align-items: center;"><a href="https://arxiv.org/abs/2510.15318" target="_blank" style="color: #333333">Revoke vs. Restart in Unweighted Throughput Scheduling</a></h2>
-            <p><strong>Related fields:</strong> Online Algorithms, Competitive Analysis</p>
+            <p><strong>Topics:</strong> Online Algorithms, Competitive Analysis</p>
             <p>This independent research investigates the preemption–revoke model for online throughput scheduling, where a running job may be aborted but cannot be restarted.
                 The study proves that no deterministic online algorithm can achieve a constant competitive ratio in this setting. Using an adversarial construction that recursively embeds three-job instances,
                 it shows that the ratio can be forced arbitrarily close to zero. The result contrasts sharply with the preemption–restart model, where a 1/2-competitive deterministic algorithm is known,
@@ -88,7 +103,8 @@
 
             <p>Supervised by Professor <a href="https://www.cs.toronto.edu/~bor/" target="_blank">Allan Borodin</a> at the University of Toronto.</p>
 
-            <p><em><strong>C. He</strong>.</em> <em>arXiv preprint (2025).</em> <a href="https://arxiv.org/abs/2510.15318" target="_blank">arXiv:2510.15318</a></p>
+            <p><strong>C. He</strong>. </p>
+            <p><em>arXiv preprint (2025).</em> <a href="https://arxiv.org/abs/2510.15318" target="_blank">arXiv: 2510.15318</a></p>
 
             <p>Poster presented at the CSSU Undergraduate Research Conference, University of Toronto (2026). <a href="assets/Posters/Online-Throughput-Scheduling-Poster.pdf" target="_blank"><i>[View Poster]</i></a></p>
         </div>
