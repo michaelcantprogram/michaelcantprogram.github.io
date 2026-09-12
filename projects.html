@@ -31,6 +31,9 @@
         .navbar-nav > li > a {
             color: #c0c0c0 !important;
         }
+        .navbar-nav > .active > a {
+            color: #ffffff !important;
+        }
     </style>
 </head>
 <body>
@@ -52,7 +55,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="research.html">Papers</a></li>
-                <li><a href="projects.html">Projects</a></li>
+                <li class="active"><a href="projects.html" aria-current="page">Projects</a></li>
 <!--                <li><a href="courses.html">Courses</a></li>-->
                 <li class="cv-button"><a href="assets/Changdao_He_CV.pdf" target="_blank">CV</a></li>
             </ul>
@@ -97,32 +100,12 @@
             <p><strong>C. He</strong>, Y. Ju., <a href="https://www.cs.toronto.edu/~axgao/" target="_blank" style="color: #333333">A. Gao</a>, <a href="https://www.cs.toronto.edu/~calver/" target="_blank" style="color: #333333">J. Calver</a>. <em>Submitted to AAAI 27; arXiv preprint (2026).</em> <a href="https://arxiv.org/abs/2608.23300" target="_blank">arXiv: 2608.23300</a>.</p>
             <p>Poster presented at the CSSU Undergraduate Research Conference, University of Toronto (2026). <a href="assets/Posters/Human-and-Computational-Measures-of-Nonogram-Puzzle-Difficulty.pdf" target="_blank"><i>[View Poster]</i></a></p>
 
-            <h2 style="display: flex; justify-content: space-between; align-items: center;">Monte Carlo Tree Search for Othello <span style="font-size: 16px; font-weight: normal;">May 2025 - Aug 2025</span></h2>
-            <p><strong>Topics:</strong> Artificial Intelligence, Search Algorithms</p>
-            <p>In the second phase of the project, I focused on advanced AI techniques for strategic gameplay in Othello.
-                I implemented multiple Monte Carlo Tree Search (MCTS) agents, exploring various configurations including
-                random and heuristic-based rollout policies, partial and full expansion strategies, and tuning of exploration
-                constants. I conducted large-scale performance evaluations to study how these design choices impact win
-                rates and efficiency.
-<!--                Currently, I am developing a reinforcement learning-based agent using-->
-<!--                Temporal-Difference (TD) Learning, allowing the agent to improve through self-play by learning-->
-<!--                value estimates from game outcomes.-->
-            </p>
-                <p>Supervised by Professor <a href="https://www.cs.toronto.edu/~axgao/" target="_blank">Alice Gao</a> at the University of Toronto.</p>
-
-            <p>Poster presented at the Undergraduate Summer Research Showcase, University of Toronto (2025). <a href="assets/Posters/Poster_Othello.pdf" target="_blank"><i>[View Poster]</i></a>
-            </p>
-
-            <h2 style="display: flex; justify-content: space-between; align-items: center;">Designing and Implementing AI Agents for Othello <span style="font-size: 16px; font-weight: normal;">Jan 2025 - Apr 2025</span></h2>
-            <p><strong>Topics:</strong> Artificial Intelligence, Game AI</p>
-            <p>I designed and implemented a fully functional <a href="https://en.wikipedia.org/wiki/Reversi#Othello" target="_blank" style="color: #333333">Othello (Reversi)</a>
-                game engine in Python, supporting human input, random agents, and AI agents. This included developing the full game logic—legal move generation,
-                disc flipping, and end-game detection—within a modular architecture. I built several game-playing agents, including a minimax search agent enhanced with
-                alpha-beta pruning and various heuristic functions such as coin parity, mobility, stability, and corner control. The system was equipped with a flexible
-                command-line interface and supported automated batch evaluations between agents for performance testing under different settings.</p>
-
-                <p>Supervised by Professor <a href="https://www.cs.toronto.edu/~axgao/" target="_blank">Alice Gao</a> at the University of Toronto.</p>
+            <h2 style="display: flex; justify-content: space-between; align-items: center;">Designing and Evaluating AI Agents for Othello <span style="font-size: 16px; font-weight: normal;">Jan 2025 - Aug 2025</span></h2>
+            <p><strong>Topics:</strong> Artificial Intelligence, Game AI, Search Algorithms</p>
+            <p>I developed a modular <a href="https://en.wikipedia.org/wiki/Reversi#Othello" target="_blank" style="color: #333333">Othello (Reversi)</a> engine and a suite of game-playing agents, beginning with minimax search and alpha-beta pruning using parity, mobility, stability, and corner heuristics. I then extended the project with Monte Carlo Tree Search agents, comparing rollout policies, expansion strategies, and exploration constants through large-scale performance evaluations.</p>
+            <p>Supervised by Professor <a href="https://www.cs.toronto.edu/~axgao/" target="_blank">Alice Gao</a> at the University of Toronto.</p>
             <p>Poster presented at the Undergraduate Summer Research Showcase, University of Toronto (2025). <a href="assets/Posters/Poster_Othello.pdf" target="_blank"><i>[View Poster]</i></a></p>
+            <p class="project-play-link"><a href="othello.html"><i>[Play Othello]</i></a></p>
 
 
 <!--            <h2 style="display: flex; justify-content: space-between; align-items: center;">VR Backend Framework for Cilindir <span style="font-size: 16px; font-weight: normal;">Jan 2025 - Present</span></h2>-->

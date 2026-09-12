@@ -42,6 +42,9 @@
     .navbar-nav > li > a {
       color: #c0c0c0 !important;
     }
+    .navbar-nav > .active > a {
+      color: #ffffff !important;
+    }
   </style>
 </head>
 <body>
@@ -62,7 +65,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left"> <!-- Add the custom class here -->
-        <li><a href="index.html">Home</a></li>
+        <li class="active"><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="research.html">Papers</a></li>
         <li><a href="projects.html">Projects</a></li>
 <!--        <li><a href="courses.html">Courses</a></li>-->
@@ -204,18 +207,12 @@
 
         <h3 style="display: flex; justify-content: space-between; align-items: center;"><a href="projects.html" style="color: #333333">Nonogram Puzzle Difficulty Analysis</a> <span style="font-size: 16px; font-weight: normal;">Sep 2025 - Aug 2026</span></h3>
         <p><strong>Related fields:</strong> Human-Perceived Difficulty, SAT Solvers</p>
-          <p>Poster presented at the CSSU Undergraduate Research Conference, University of Toronto (2026). </p>
-          <p><a href="assets/Posters/Human-and-Computational-Measures-of-Nonogram-Puzzle-Difficulty.pdf" target="_blank"><i>[View Poster]</i></a></p>
+          <p>Poster presented at the CSSU Undergraduate Research Conference, University of Toronto (2026). <a href="assets/Posters/Human-and-Computational-Measures-of-Nonogram-Puzzle-Difficulty.pdf" target="_blank"><i>[View Poster]</i></a></p>
 
-        <h3 style="display: flex; justify-content: space-between; align-items: center;"><a href="projects.html" style="color: #333333">Monte Carlo Tree Search for Othello</a> <span style="font-size: 16px; font-weight: normal;">May 2025 - Aug 2025</span></h3>
-        <p><strong>Related fields:</strong> Artificial Intelligence, Search Algorithms</p>
-          <p>Poster presented at the Undergraduate Summer Research Showcase, University of Toronto (2025). </p>
-          <p><a href="assets/Posters/Poster_Othello.pdf" target="_blank"><i>[View Poster]</i></a></p>
-
-        <h3 style="display: flex; justify-content: space-between; align-items: center;"><a href="projects.html" style="color: #333333">Designing and Implementing AI Agents for Othello</a> <span style="font-size: 16px; font-weight: normal;">Jan 2025 - Apr 2025</span></h3>
-        <p><strong>Related fields:</strong> Artificial Intelligence, Game AI</p>
-          <p>Poster presented at the Undergraduate Summer Research Showcase, University of Toronto (2025). </p>
-          <p><a href="assets/Posters/Poster_Othello.pdf" target="_blank"><i>[View Poster]</i></a></p>
+        <h3 style="display: flex; justify-content: space-between; align-items: center;"><a href="projects.html" style="color: #333333">Designing and Evaluating AI Agents for Othello</a> <span style="font-size: 16px; font-weight: normal;">Jan 2025 - Aug 2025</span></h3>
+        <p><strong>Related fields:</strong> Artificial Intelligence, Game AI, Search Algorithms</p>
+          <p>Poster presented at the Undergraduate Summer Research Showcase, University of Toronto (2025). <a href="assets/Posters/Poster_Othello.pdf" target="_blank"><i>[View Poster]</i></a></p>
+          <p class="project-play-link"><a href="othello.html" style="color: #337AB7"><i>[Play Othello]</i></a></p>
 <!--        <p>Under the supervision of Professor Alice Gao at the University of Toronto, I am focusing on developing effective-->
 <!--          heuristics for strategic gameplay in Othello (Reversi), a two-player board game. This project involves designing-->
 <!--          and testing various heuristic approaches for board evaluation, alongside implementing the minimax algorithm enhanced-->

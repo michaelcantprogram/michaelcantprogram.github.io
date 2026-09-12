@@ -1,0 +1,8 @@
+{
+  "name": "changdaohe-personal-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/othello.test.mjs"
+  }
+}

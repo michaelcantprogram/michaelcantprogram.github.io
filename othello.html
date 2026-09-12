@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Othello Playground - Changdao He</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Play Othello against a browser-based alpha-beta agent adapted from Changdao He's research.">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/othello.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700&amp;display=swap" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Changdao He</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#site-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="site-navigation">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">Papers</a></li>
+                <li class="active"><a href="projects.html" aria-current="page">Projects</a></li>
+                <li class="cv-button"><a href="assets/Changdao_He_CV.pdf" target="_blank">CV</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container-fluid">
+    <div class="content othello-content">
+        <header class="playground-heading">
+            <p class="back-link"><a href="projects.html">&larr; Back to Projects</a></p>
+            <h1>Othello Playground</h1>
+            <p>Play against an alpha-beta pruning agent adapted from my Othello research. Choose your side, agent's heuristic and search depth, then start a game.</p>
+        </header>
+
+        <section class="game-area" aria-label="Othello game">
+            <div class="play-surface">
+                <div id="board-stage" class="board-stage">
+                    <div class="board-frame">
+                        <div id="othello-board" class="othello-board" aria-label="Othello board"></div>
+                    </div>
+
+                    <div id="board-overlay" class="board-overlay">
+                        <section id="setup-dialog" class="board-dialog setup-dialog" role="dialog" aria-labelledby="setup-title" aria-describedby="setup-description">
+                            <h2 id="setup-title">Start a game</h2>
+                            <p id="setup-description">Choose your side and configure the agent before starting.</p>
+
+                            <fieldset>
+                                <legend>Your side</legend>
+                                <div class="option-row two-options">
+                                    <label><input type="radio" name="human-side" value="black" checked><span>Black</span></label>
+                                    <label><input type="radio" name="human-side" value="white"><span>White</span></label>
+                                </div>
+                            </fieldset>
+
+                            <button id="start-game" type="button" class="primary-game-button">Start</button>
+                        </section>
+
+                        <section id="game-over-dialog" class="board-dialog game-over-dialog" role="dialog" aria-labelledby="game-over-title" aria-describedby="game-over-result" hidden>
+                            <p class="dialog-label">Final result</p>
+                            <h2 id="game-over-title">Game over</h2>
+                            <p id="game-over-result"></p>
+                            <p id="game-over-score" class="final-score"></p>
+                            <button id="play-again" type="button" class="primary-game-button">New Game</button>
+                        </section>
+                    </div>
+                </div>
+
+                <aside id="agent-configuration" class="agent-configuration" aria-labelledby="agent-configuration-title">
+                    <div>
+                        <p class="configuration-label">Alpha-beta pruning</p>
+                        <h2 id="agent-configuration-title">Agent configuration</h2>
+                    </div>
+
+                    <fieldset>
+                        <legend>Heuristic</legend>
+                        <div class="heuristic-options">
+                            <label><input type="radio" name="agent-heuristic" value="parity"><span>Parity</span></label>
+                            <label><input type="radio" name="agent-heuristic" value="mobility"><span>Mobility</span></label>
+                            <label><input type="radio" name="agent-heuristic" value="corner"><span>Corner</span></label>
+                            <label><input type="radio" name="agent-heuristic" value="stability" checked><span>Stability</span></label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Maximum depth</legend>
+                        <div class="depth-options">
+                            <label><input type="radio" name="search-depth" value="1"><span>1</span></label>
+                            <label><input type="radio" name="search-depth" value="2"><span>2</span></label>
+                            <label><input type="radio" name="search-depth" value="4" checked><span>4</span></label>
+                            <label><input type="radio" name="search-depth" value="8"><span>8</span></label>
+                        </div>
+                        <div class="custom-depth-control">
+                            <label class="custom-depth-choice">
+                                <input type="radio" name="search-depth" value="custom">
+                                <span>Custom</span>
+                            </label>
+                            <label class="custom-depth-input-label" for="custom-depth-value">
+                                <span>(max 8)</span>
+                                <input id="custom-depth-value" name="custom-depth" type="number" min="1" max="8" step="1" inputmode="numeric" autocomplete="off" aria-label="Custom maximum search depth, from 1 to 8">
+                            </label>
+                        </div>
+                        <p class="configuration-help">Higher depths examine more future moves. Search stops after 8 seconds.</p>
+                    </fieldset>
+                </aside>
+
+            </div>
+
+            <div class="game-toolbar" aria-label="Game information and controls">
+                <div class="locked-settings" aria-label="Current game settings">
+                    <span id="side-summary">You: Black</span>
+                    <span id="agent-summary">Stability &middot; depth 4</span>
+                </div>
+                <div class="turn-status" aria-live="polite" aria-atomic="true">
+                    <strong id="game-status">Ready to play</strong>
+                    <span id="status-detail">Choose your side and agent settings.</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-color"><i class="score-disc black-disc" aria-hidden="true"></i>Black <small id="black-owner"></small></span>
+                    <strong id="black-score">2</strong>
+                </div>
+                <div class="score-item">
+                    <span class="score-color"><i class="score-disc white-disc" aria-hidden="true"></i>White <small id="white-owner"></small></span>
+                    <strong id="white-score">2</strong>
+                </div>
+                <button id="new-game" type="button" class="new-game-button">New Game</button>
+            </div>
+
+            <noscript><p class="noscript-message">JavaScript is required to play Othello.</p></noscript>
+        </section>
+
+        <section class="research-note" aria-labelledby="about-agent">
+            <h2 id="about-agent">About the agent</h2>
+            <p>This browser agent uses alpha-beta pruning with the single heuristic and maximum search depth selected beside the board. <a href="assets/Posters/Poster_Othello.pdf" target="_blank" rel="noopener noreferrer">View the research poster.</a></p>
+        </section>
+    </div>
+</main>
+
+<script type="module" src="js/othello/ui.js"></script>
+</body>
+</html>
