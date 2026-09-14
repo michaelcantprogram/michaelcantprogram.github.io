@@ -15,6 +15,7 @@ const boardElement = document.querySelector('#othello-board');
 const boardOverlay = document.querySelector('#board-overlay');
 const setupDialog = document.querySelector('#setup-dialog');
 const gameOverDialog = document.querySelector('#game-over-dialog');
+const rulesDialog = document.querySelector('#rules-dialog');
 const gameOverResult = document.querySelector('#game-over-result');
 const gameOverScore = document.querySelector('#game-over-score');
 const statusElement = document.querySelector('#game-status');
@@ -30,6 +31,8 @@ const customDepthInput = document.querySelector('#custom-depth-value');
 const startGameButton = document.querySelector('#start-game');
 const newGameButton = document.querySelector('#new-game');
 const playAgainButton = document.querySelector('#play-again');
+const showRulesButton = document.querySelector('#show-rules');
+const closeRulesButton = document.querySelector('#close-rules');
 const presetDepthInputs = [...document.querySelectorAll('input[name="search-depth"]:not([value="custom"])')];
 const configurationInputs = [
     ...document.querySelectorAll('input[name="human-side"], input[name="agent-heuristic"], input[name="search-depth"]'),
@@ -41,6 +44,8 @@ let gameStarted = false;
 let aiThinking = false;
 let notice = '';
 let gameVersion = 0;
+let rulesReturnState = 'game';
+let resumeAgentAfterRules = false;
 
 function colorName(color) {
     return color === BLACK ? 'Black' : 'White';
@@ -182,10 +187,47 @@ function showGameOver() {
     gameOverResult.textContent = resultText;
     gameOverScore.textContent = `Black ${score.black} · White ${score.white}`;
     setupDialog.hidden = true;
+    rulesDialog.hidden = true;
     gameOverDialog.hidden = false;
     boardOverlay.hidden = false;
     render();
     playAgainButton.focus();
+}
+
+function showRules() {
+    rulesReturnState = !setupDialog.hidden ? 'setup' : (!gameOverDialog.hidden ? 'game-over' : 'game');
+    resumeAgentAfterRules = gameStarted && !game.gameOver && game.currentPlayer === game.aiColor;
+
+    if (aiThinking) {
+        gameVersion += 1;
+        aiThinking = false;
+    }
+
+    setupDialog.hidden = true;
+    gameOverDialog.hidden = true;
+    rulesDialog.hidden = false;
+    boardOverlay.hidden = false;
+    render();
+    closeRulesButton.focus();
+}
+
+function closeRules() {
+    rulesDialog.hidden = true;
+
+    if (rulesReturnState === 'setup') {
+        setupDialog.hidden = false;
+        startGameButton.focus();
+    } else if (rulesReturnState === 'game-over') {
+        gameOverDialog.hidden = false;
+        playAgainButton.focus();
+    } else {
+        boardOverlay.hidden = true;
+        showRulesButton.focus();
+    }
+
+    render();
+    if (resumeAgentAfterRules && rulesReturnState === 'game') scheduleAiTurn();
+    resumeAgentAfterRules = false;
 }
 
 function scheduleAiTurn() {
@@ -283,6 +325,7 @@ function prepareNewGame() {
     agentConfiguration.classList.remove('is-locked');
     setupDialog.hidden = false;
     gameOverDialog.hidden = true;
+    rulesDialog.hidden = true;
     boardOverlay.hidden = false;
     render();
 }
@@ -291,6 +334,11 @@ boardElement.addEventListener('click', handleBoardClick);
 startGameButton.addEventListener('click', startGame);
 newGameButton.addEventListener('click', prepareNewGame);
 playAgainButton.addEventListener('click', prepareNewGame);
+showRulesButton.addEventListener('click', showRules);
+closeRulesButton.addEventListener('click', closeRules);
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !rulesDialog.hidden) closeRules();
+});
 configurationInputs.forEach((input) => input.addEventListener('change', renderStatus));
 presetDepthInputs.forEach((input) => input.addEventListener('change', () => {
     customDepthInput.value = '';

@@ -78,8 +78,68 @@ a:hover {
     color: #245c3f;
 }
 
+.explore-introduction {
+    max-width: 700px;
+    margin-bottom: 34px;
+    color: #555555;
+    line-height: 1.6;
+}
+
+.explore-entry {
+    display: grid;
+    grid-template-columns: 170px minmax(0, 1fr);
+    gap: 28px;
+    padding: 26px 0 28px;
+    border-top: 1px solid #c7c7c7;
+    border-bottom: 1px solid #c7c7c7;
+}
+
+.explore-entry-label {
+    margin: 5px 0 0;
+    color: #707070;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+
+.explore-entry h2 {
+    margin: 0 0 9px;
+}
+
+.explore-entry-description {
+    max-width: 620px;
+    margin-bottom: 12px;
+    line-height: 1.55;
+}
+
+.explore-entry-meta {
+    margin-bottom: 16px;
+    color: #707070;
+    font-size: 14px;
+}
+
+.explore-entry-link {
+    margin: 0;
+}
+
+.explore-entry-link a {
+    color: #245c3f;
+    font-weight: 700;
+}
+
 /* Mobile fix for project/research title layout */
 @media (max-width: 768px) {
+    .explore-entry {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .explore-entry-label {
+        margin-top: 0;
+    }
+
     h3[style*="display: flex"] {
         display: block !important;
     }

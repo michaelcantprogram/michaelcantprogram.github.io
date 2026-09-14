@@ -534,6 +534,22 @@ body {
     font-weight: 700;
 }
 
+.rules-dialog {
+    width: min(360px, 86%);
+}
+
+.rules-dialog ol {
+    margin: 10px 0 15px;
+    padding-left: 20px;
+    color: #4f4f4f;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.rules-dialog li + li {
+    margin-top: 5px;
+}
+
 .game-toolbar {
     display: flex;
     align-items: stretch;
@@ -655,6 +671,28 @@ body {
     display: inline;
     margin: 0;
     font-size: 14px;
+}
+
+.inline-link-button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #337ab7;
+    font: inherit;
+    line-height: inherit;
+    vertical-align: baseline;
+}
+
+.inline-link-button:hover,
+.inline-link-button:focus-visible {
+    color: #23527c;
+    text-decoration: underline;
+}
+
+.inline-link-button:focus-visible {
+    outline: 2px solid #337ab7;
+    outline-offset: 2px;
 }
 
 .noscript-message {

@@ -31,7 +31,8 @@
             <ul class="nav navbar-nav navbar-left">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="research.html">Papers</a></li>
-                <li class="active"><a href="projects.html" aria-current="page">Projects</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li class="active"><a href="explore.html" aria-current="page">Explore</a></li>
                 <li class="cv-button"><a href="assets/Changdao_He_CV.pdf" target="_blank">CV</a></li>
             </ul>
         </div>
@@ -41,7 +42,7 @@
 <main class="container-fluid">
     <div class="content othello-content">
         <header class="playground-heading">
-            <p class="back-link"><a href="projects.html">&larr; Back to Projects</a></p>
+            <p class="back-link"><a href="explore.html">&larr; Back to Explore</a></p>
             <h1>Othello Playground</h1>
             <p>Play against an alpha-beta pruning agent adapted from my Othello research. Choose your side, agent's heuristic and search depth, then start a game.</p>
         </header>
@@ -56,7 +57,7 @@
                     <div id="board-overlay" class="board-overlay">
                         <section id="setup-dialog" class="board-dialog setup-dialog" role="dialog" aria-labelledby="setup-title" aria-describedby="setup-description">
                             <h2 id="setup-title">Start a game</h2>
-                            <p id="setup-description">Choose your side and configure the agent before starting.</p>
+                            <p id="setup-description">Choose your side and configure the agent before starting. <button id="show-rules" type="button" class="inline-link-button">How to Play</button></p>
 
                             <fieldset>
                                 <legend>Your side</legend>
@@ -75,6 +76,18 @@
                             <p id="game-over-result"></p>
                             <p id="game-over-score" class="final-score"></p>
                             <button id="play-again" type="button" class="primary-game-button">New Game</button>
+                        </section>
+
+                        <section id="rules-dialog" class="board-dialog rules-dialog" role="dialog" aria-labelledby="rules-title" hidden>
+                            <p class="dialog-label">How to play</p>
+                            <h2 id="rules-title">Othello rules</h2>
+                            <ol>
+                                <li>Place a disc so that it brackets one or more opposing discs in a straight line: horizontally, vertically, or diagonally.</li>
+                                <li>Every bracketed disc flips to your colour.</li>
+                                <li>If you have no legal move, your turn is passed.</li>
+                                <li>The game ends when the board is full or neither side can move. The player with more discs wins.</li>
+                            </ol>
+                            <button id="close-rules" type="button" class="primary-game-button">Back to game</button>
                         </section>
                     </div>
                 </div>
