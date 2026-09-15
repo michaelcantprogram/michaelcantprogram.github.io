@@ -76,6 +76,12 @@ export function chooseMove(board, player, options = {}) {
         return {move: null, depth: 0, nodes: 0};
     }
 
+    if (options.heuristic === 'random') {
+        const random = options.random ?? Math.random;
+        const randomIndex = Math.floor(random() * moves.length);
+        return {move: moves[randomIndex], depth: 0, nodes: 0};
+    }
+
     const context = {
         deadline: performance.now() + timeLimitMs,
         nodes: 0,
