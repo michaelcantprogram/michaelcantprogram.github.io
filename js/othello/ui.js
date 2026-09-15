@@ -140,7 +140,7 @@ function renderBoard() {
 function renderStatus() {
     const score = game.score();
     const heuristic = selectedHeuristic();
-    const maxDepth = selectedSearchDepth();
+    const maxDepth = heuristic === 'random' ? null : selectedSearchDepth();
     const displayedHumanColor = gameStarted ? game.humanColor : selectedHumanColor();
     blackScoreElement.textContent = score.black;
     whiteScoreElement.textContent = score.white;
@@ -148,8 +148,8 @@ function renderStatus() {
     whiteOwnerElement.textContent = displayedHumanColor === WHITE ? '(You)' : '(Agent)';
     sideSummaryElement.textContent = `You: ${colorName(displayedHumanColor)}`;
     agentSummaryElement.textContent = heuristic === 'random'
-        ? HEURISTIC_LABELS[heuristic]
-        : `${HEURISTIC_LABELS[heuristic]} · depth ${maxDepth}`;
+        ? 'Random'
+        : `${HEURISTIC_LABELS[heuristic] ?? 'Agent'} · depth ${maxDepth}`;
 
     if (!gameStarted) {
         statusElement.textContent = 'Ready to play';
