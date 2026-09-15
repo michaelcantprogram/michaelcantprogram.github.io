@@ -29,6 +29,12 @@ const searchResult = chooseMove(initialBoard, BLACK, {maxDepth: 3, timeLimitMs: 
 assert.ok(searchResult.move);
 assert.ok(moveKeys(getLegalMoves(initialBoard, BLACK)).includes(`${searchResult.move.row},${searchResult.move.col}`));
 
+const randomResult = chooseMove(initialBoard, BLACK, {heuristic: 'random', random: () => 0.5});
+assert.ok(randomResult.move);
+assert.equal(randomResult.depth, 0);
+assert.equal(randomResult.nodes, 0);
+assert.ok(moveKeys(getLegalMoves(initialBoard, BLACK)).includes(`${randomResult.move.row},${randomResult.move.col}`));
+
 assert.deepEqual(Object.keys(HEURISTICS), ['parity', 'mobility', 'corner', 'stability']);
 for (const heuristic of Object.keys(HEURISTICS)) {
     assert.equal(typeof evaluateBoard(initialBoard, BLACK, heuristic), 'number');

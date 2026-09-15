@@ -3,6 +3,7 @@ import {chooseMove} from './alphabeta.js';
 import {BLACK, WHITE, OthelloGame} from './game.js';
 
 const HEURISTIC_LABELS = {
+    random: 'Random',
     parity: 'Parity',
     mobility: 'Mobility',
     corner: 'Corner',
@@ -27,6 +28,7 @@ const whiteOwnerElement = document.querySelector('#white-owner');
 const sideSummaryElement = document.querySelector('#side-summary');
 const agentSummaryElement = document.querySelector('#agent-summary');
 const agentConfiguration = document.querySelector('#agent-configuration');
+const depthSettings = document.querySelector('#depth-settings');
 const customDepthInput = document.querySelector('#custom-depth-value');
 const startGameButton = document.querySelector('#start-game');
 const newGameButton = document.querySelector('#new-game');
@@ -70,6 +72,12 @@ function selectedSearchDepth() {
     const enteredDepth = Math.trunc(Number(customDepthInput.value));
     if (!Number.isFinite(enteredDepth)) return 1;
     return Math.min(MAX_CUSTOM_DEPTH, Math.max(1, enteredDepth));
+}
+
+function updateDepthAvailability() {
+    const unavailable = selectedHeuristic() === 'random';
+    depthSettings.disabled = gameStarted || unavailable;
+    depthSettings.classList.toggle('is-unavailable', unavailable);
 }
 
 function normalizeCustomDepth() {
@@ -139,7 +147,9 @@ function renderStatus() {
     blackOwnerElement.textContent = displayedHumanColor === BLACK ? '(You)' : '(Agent)';
     whiteOwnerElement.textContent = displayedHumanColor === WHITE ? '(You)' : '(Agent)';
     sideSummaryElement.textContent = `You: ${colorName(displayedHumanColor)}`;
-    agentSummaryElement.textContent = `${HEURISTIC_LABELS[heuristic]} · depth ${maxDepth}`;
+    agentSummaryElement.textContent = heuristic === 'random'
+        ? HEURISTIC_LABELS[heuristic]
+        : `${HEURISTIC_LABELS[heuristic]} · depth ${maxDepth}`;
 
     if (!gameStarted) {
         statusElement.textContent = 'Ready to play';
@@ -303,9 +313,10 @@ function startGame() {
     gameVersion += 1;
     aiThinking = false;
     gameStarted = true;
-    if (document.querySelector('input[name="search-depth"]:checked').value === 'custom') normalizeCustomDepth();
+    if (selectedHeuristic() !== 'random' && document.querySelector('input[name="search-depth"]:checked').value === 'custom') normalizeCustomDepth();
     game = new OthelloGame(selectedHumanColor());
     configurationInputs.forEach((input) => { input.disabled = true; });
+    updateDepthAvailability();
     agentConfiguration.classList.add('is-locked');
     boardOverlay.hidden = true;
     notice = game.humanColor === BLACK
@@ -322,6 +333,7 @@ function prepareNewGame() {
     game = new OthelloGame(selectedHumanColor());
     notice = '';
     configurationInputs.forEach((input) => { input.disabled = false; });
+    updateDepthAvailability();
     agentConfiguration.classList.remove('is-locked');
     setupDialog.hidden = false;
     gameOverDialog.hidden = true;
@@ -339,7 +351,10 @@ closeRulesButton.addEventListener('click', closeRules);
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !rulesDialog.hidden) closeRules();
 });
-configurationInputs.forEach((input) => input.addEventListener('change', renderStatus));
+configurationInputs.forEach((input) => input.addEventListener('change', () => {
+    updateDepthAvailability();
+    renderStatus();
+}));
 presetDepthInputs.forEach((input) => input.addEventListener('change', () => {
     customDepthInput.value = '';
 }));

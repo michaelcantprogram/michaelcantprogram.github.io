@@ -94,6 +94,10 @@ a:hover {
     border-bottom: 1px solid #c7c7c7;
 }
 
+.explore-entry + .explore-entry {
+    border-top: 0;
+}
+
 .explore-entry-label {
     margin: 5px 0 0;
     color: #707070;

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nonogram Playground - Changdao He</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Solve six 10 by 10 Nonograms from Changdao He's research on computational and human-perceived puzzle difficulty.">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/nonogram.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:300,400,700&amp;display=swap" rel="stylesheet" type="text/css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">Changdao He</a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#site-navigation">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="site-navigation">
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">Papers</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li class="active"><a href="explore.html" aria-current="page">Explore</a></li>
+                <li class="cv-button"><a href="assets/Changdao_He_CV.pdf" target="_blank">CV</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main class="container-fluid">
+    <div class="content nonogram-content">
+        <header class="nonogram-heading">
+            <p class="back-link"><a href="explore.html">&larr; Back to Explore</a></p>
+            <h1>Nonogram Playground</h1>
+            <p>Solve one of six 10&times;10 puzzles used in my study of computational and human-perceived Nonogram difficulty.</p>
+        </header>
+
+        <section class="nonogram-game" aria-label="Nonogram puzzle">
+            <div class="nonogram-surface">
+                <div id="nonogram-stage" class="nonogram-stage">
+                    <div id="nonogram-puzzle" class="nonogram-puzzle" aria-label="10 by 10 Nonogram puzzle"></div>
+
+                    <div id="puzzle-overlay" class="puzzle-overlay">
+                        <section id="puzzle-setup" class="puzzle-dialog" role="dialog" aria-labelledby="puzzle-setup-title" aria-describedby="puzzle-setup-description">
+                            <h2 id="puzzle-setup-title">Start a puzzle</h2>
+                            <p id="puzzle-setup-description">Fill the grid using the clues beside each row and column. <button id="show-nonogram-rules" type="button" class="inline-link-button">How to Play</button></p>
+                            <p class="puzzle-selection-note">A research puzzle will be selected at random.</p>
+                            <button id="start-puzzle" type="button" class="primary-puzzle-button">Start</button>
+                        </section>
+
+                        <section id="nonogram-rules" class="puzzle-dialog rules-dialog" role="dialog" aria-labelledby="nonogram-rules-title" hidden>
+                            <p class="dialog-label">How to play</p>
+                            <h2 id="nonogram-rules-title">Nonogram rules</h2>
+                            <ul>
+                                <li>Each clue gives the lengths of filled groups in that row or column.</li>
+                                <li>Separate consecutive groups with at least one empty cell.</li>
+                                <li>Use &times; to mark cells you know are empty.</li>
+                                <li>Complete the puzzle by finding every filled cell.</li>
+                            </ul>
+                            <button id="close-nonogram-rules" type="button" class="primary-puzzle-button">Back to setup</button>
+                        </section>
+
+                        <section id="puzzle-complete" class="puzzle-dialog completion-dialog" role="dialog" aria-labelledby="puzzle-complete-title" hidden>
+                            <p class="dialog-label">Puzzle complete</p>
+                            <h2 id="puzzle-complete-title">Solved</h2>
+                            <p id="completion-summary"></p>
+                            <div class="research-result" aria-label="Research comparison">
+                                <p><strong>Human study</strong><span id="human-result"></span></p>
+                                <p><strong>MiniSat22</strong><span id="solver-result"></span></p>
+                            </div>
+                            <p class="comparison-note">In the study, solver statistics did not closely reproduce the human difficulty ordering.</p>
+                            <div class="completion-actions">
+                                <button id="replay-puzzle" type="button" class="secondary-puzzle-button">Replay</button>
+                                <button id="next-puzzle" type="button" class="primary-puzzle-button">New Puzzle</button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <aside class="puzzle-controls" aria-labelledby="puzzle-controls-title">
+                    <h2 id="puzzle-controls-title" class="puzzle-controls-title">Nonogram</h2>
+                    <p class="controls-help controls-help-primary">Left-click an unfilled cell to fill it, or a filled cell to clear it. Right-click to mark &times;; crossed cells count as unfilled. Drag to change a rectangular selection.</p>
+
+                    <div class="puzzle-details">
+                        <p><span>Puzzle</span><strong id="puzzle-number">&mdash;</strong></p>
+                        <p><span>Hints left</span><strong id="hints-left">3</strong></p>
+                        <p><span>Personal best</span><strong id="personal-best">&mdash;</strong></p>
+                    </div>
+
+                    <div class="control-actions">
+                        <button id="use-hint" type="button" class="secondary-puzzle-button">Hint</button>
+                        <button id="undo-move" type="button" class="secondary-puzzle-button">Undo</button>
+                        <button id="reset-puzzle" type="button" class="secondary-puzzle-button wide-action" title="Clear the grid without resetting the timer or hints">Reset Grid</button>
+                        <button id="restart-puzzle" type="button" class="secondary-puzzle-button wide-action" title="Return this puzzle to the start panel">Restart Game</button>
+                        <button id="new-puzzle" type="button" class="primary-puzzle-button wide-action">New Puzzle</button>
+                    </div>
+                </aside>
+            </div>
+
+            <div class="puzzle-toolbar" aria-label="Puzzle status and controls">
+                <div class="toolbar-stat">
+                    <span>Time</span>
+                    <strong id="puzzle-timer">0:00</strong>
+                </div>
+                <div class="puzzle-status" aria-live="polite" aria-atomic="true">
+                    <strong id="puzzle-status">Ready to solve</strong>
+                    <span id="puzzle-status-detail">Start when you are ready.</span>
+                </div>
+                <div class="toolbar-stat filled-stat">
+                    <span>Filled</span>
+                    <strong id="filled-count">0 / 0</strong>
+                </div>
+                <button id="check-puzzle" type="button" class="check-puzzle-button">Check</button>
+            </div>
+
+            <noscript><p class="noscript-message">JavaScript is required to solve this Nonogram.</p></noscript>
+        </section>
+
+        <section class="nonogram-research-note" aria-labelledby="about-nonogram-project">
+            <h2 id="about-nonogram-project">About the project</h2>
+            <p>These puzzles were used to compare SAT-solver statistics with human difficulty ratings and solving behaviour. Personal bests stay on this device; no gameplay data is collected. <a href="https://arxiv.org/abs/2608.23300" target="_blank" rel="noopener noreferrer">Read the research paper</a> or <a href="assets/Posters/Human-and-Computational-Measures-of-Nonogram-Puzzle-Difficulty.pdf" target="_blank" rel="noopener noreferrer">view the research poster</a>.</p>
+        </section>
+    </div>
+</main>
+
+<script type="module" src="js/nonogram/ui.js"></script>
+</body>
+</html>

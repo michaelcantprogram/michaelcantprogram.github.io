@@ -77,7 +77,7 @@ body {
 }
 
 .play-surface {
-    --board-size: min(calc(48vh + 10px), 450px, calc(100vw - 30px));
+    --board-size: min(450px, calc(100vw - 30px));
     display: grid;
     grid-template-columns: var(--board-size) minmax(0, 170px);
     gap: 16px;
@@ -98,7 +98,7 @@ body {
     grid-column: 2;
     grid-row: 1;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     min-width: 0;
     height: var(--board-size);
     padding: 14px 12px;
@@ -131,6 +131,14 @@ body {
     margin: 14px 0 0;
     padding: 0;
     border: 0;
+}
+
+.depth-settings {
+    transition: opacity 140ms ease;
+}
+
+.depth-settings.is-unavailable {
+    opacity: 0.42;
 }
 
 .agent-configuration legend {
@@ -718,7 +726,7 @@ body {
 
     .heuristic-options {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         border-left: 1px solid #bfc2bf;
     }
 

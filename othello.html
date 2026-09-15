@@ -4,7 +4,7 @@
     <title>Othello Playground - Changdao He</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Play Othello against a browser-based alpha-beta agent adapted from Changdao He's research.">
+    <meta name="description" content="Play Othello against browser-based random and alpha-beta agents adapted from Changdao He's research.">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/othello.css">
@@ -44,7 +44,7 @@
         <header class="playground-heading">
             <p class="back-link"><a href="explore.html">&larr; Back to Explore</a></p>
             <h1>Othello Playground</h1>
-            <p>Play against an alpha-beta pruning agent adapted from my Othello research. Choose your side, agent's heuristic and search depth, then start a game.</p>
+            <p>Play against a configurable Othello agent adapted from my research. Choose random play or an alpha-beta heuristic, then start a game.</p>
         </header>
 
         <section class="game-area" aria-label="Othello game">
@@ -94,13 +94,14 @@
 
                 <aside id="agent-configuration" class="agent-configuration" aria-labelledby="agent-configuration-title">
                     <div>
-                        <p class="configuration-label">Alpha-beta pruning</p>
+                        <p class="configuration-label">Othello agent</p>
                         <h2 id="agent-configuration-title">Agent configuration</h2>
                     </div>
 
                     <fieldset>
-                        <legend>Heuristic</legend>
+                        <legend>Strategy</legend>
                         <div class="heuristic-options">
+                            <label><input type="radio" name="agent-heuristic" value="random"><span>Random</span></label>
                             <label><input type="radio" name="agent-heuristic" value="parity"><span>Parity</span></label>
                             <label><input type="radio" name="agent-heuristic" value="mobility"><span>Mobility</span></label>
                             <label><input type="radio" name="agent-heuristic" value="corner"><span>Corner</span></label>
@@ -108,7 +109,7 @@
                         </div>
                     </fieldset>
 
-                    <fieldset>
+                    <fieldset id="depth-settings" class="depth-settings">
                         <legend>Maximum depth</legend>
                         <div class="depth-options">
                             <label><input type="radio" name="search-depth" value="1"><span>1</span></label>
@@ -157,7 +158,7 @@
 
         <section class="research-note" aria-labelledby="about-agent">
             <h2 id="about-agent">About the agent</h2>
-            <p>This browser agent uses alpha-beta pruning with the single heuristic and maximum search depth selected beside the board. <a href="assets/Posters/Poster_Othello.pdf" target="_blank" rel="noopener noreferrer">View the research poster.</a></p>
+            <p>Choose a random agent or alpha-beta pruning with the single heuristic and maximum search depth selected beside the board. <a href="assets/Posters/Poster_Othello.pdf" target="_blank" rel="noopener noreferrer">View the research poster.</a></p>
         </section>
     </div>
 </main>

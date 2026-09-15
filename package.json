@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/othello.test.mjs"
+    "test": "node tests/othello.test.mjs && node tests/nonogram.test.mjs"
   }
 }
